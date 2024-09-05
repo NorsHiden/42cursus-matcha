@@ -1,0 +1,24 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "An api using Express with TypeScript",
+  "scripts": {
+    "start": "node dist/main.js",
+    "build": "tsc",
+    "start:dev": "ts-node-dev --respawn --transpile-only src/main.ts",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^20.4.8",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.2.2",
+    "eslint": "^8.47.0",
+    "prettier": "^3.0.0"
+  }
+}
