@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response } from 'express';
 
 function bootstrap() {
   const app = express();
@@ -7,8 +7,8 @@ function bootstrap() {
 
   app.use(express.json());
 
-  app.get("/", (req: Request, res: Response) => {
-    res.send("Api is Ready!");
+  app.get('/', (req: Request, res: Response) => {
+    res.send('Api is Ready!');
   });
 
   app.listen(PORT, () => {
