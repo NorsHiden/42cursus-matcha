@@ -1,10 +1,14 @@
-import { Avatar, Badge, Button } from "@nextui-org/react";
+import { Avatar, Badge, Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
+import { EllipsisVertical } from "lucide-react";
 import React from "react";
+import ProfileDrop from "./utils/ProfileDrop";
 
 const Header = () => {
   return (
     <div className="  my-12 w-full h-[360px] drop-shadow-xl rounded-xl bg-primary ">
-      <div className=' w-full h-[70%] rounded-t-xl rounded-b-lg bg-[url("https://images.unsplash.com/photo-1725815980441-468dc5ca0d72?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")]  ' />
+      <div className=' w-full flex place-content-end p-4 h-[70%] rounded-t-xl rounded-b-lg bg-[url("https://images.unsplash.com/photo-1725815980441-468dc5ca0d72?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")]  '>
+        <ProfileDrop/>
+      </div>
       <div className="  relative flex justify-between px-10 items-center w-full h-[30%] pb-10 ">
         <div className=" flex space-x-3 pb-10 items-end">
           <div className=" ">
