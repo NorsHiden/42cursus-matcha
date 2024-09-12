@@ -33,7 +33,8 @@ const ProfileTabs = () => {
           <div>Fame Rate</div>
         </Tab>
         <Tab key="posts" title="Posts" className="" >
-          <div className=" h-[450px] no-scrollbar overflow-auto">
+          <div className=" h-[550px] no-scrollbar overflow-auto  space-y-6">
+            <Posts/>
             <Posts/>
           </div>
         </Tab>

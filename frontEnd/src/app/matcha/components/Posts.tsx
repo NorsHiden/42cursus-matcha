@@ -2,6 +2,7 @@ import {
   Avatar,
   Card,
   CardBody,
+  CardFooter,
   CardHeader,
   Dropdown,
   DropdownItem,
@@ -10,7 +11,9 @@ import {
 } from "@nextui-org/react";
 import { Ellipsis } from "lucide-react";
 import React from "react";
-import MasonryGrid from "../Account/components/utils/MasonryGrid";
+import MasonryGrid from "./MasonryGrid";
+import Descrp from "./Descrp";
+import PostReactions from "./PostReactions";
 
 const PostDropdown = () => {
   return (
@@ -43,6 +46,10 @@ const Posts = () => {
       <CardBody>
         <MasonryGrid />
       </CardBody>
+      <CardFooter className=" w-full flex flex-col items-start">
+        <Descrp text="Nestled beneath an azure sky, the majestic mountains in these captivating images stand as sent Nestled beneath an azure sky, the majestic mountains in these captivating images stand as sent"/>
+        <PostReactions />
+      </CardFooter>
     </Card>
   );
 };

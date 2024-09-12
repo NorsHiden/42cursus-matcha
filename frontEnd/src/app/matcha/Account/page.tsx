@@ -15,7 +15,7 @@ const Account = () => {
           <Bio/>
           <About/>
         </div>
-        <div className=" w-full h-full col-span-2">
+        <div className=" w-full col-span-2">
           <ProfileTabs />
         </div>
         <div className=" w-full h-full">
