@@ -72,24 +72,7 @@ export default function MasonryGrid() {
     slidesToScroll: 1,
     initialSlide: activeIndex,
     beforeChange: (current: number, next: number) => setActiveIndex(next),
-    // nextArrow: (
-    //   <Button
-    //     isIconOnly
-    //     className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/50 hover:bg-white/80"
-    //     onClick={goToNext}
-    //   >
-    //     <ChevronRightIcon className="w-6 h-6" />
-    //   </Button>
-    // ),
-    // prevArrow: (
-    //   <Button
-    //     isIconOnly
-    //     className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/50 hover:bg-white/80"
-    //     onClick={goToPrev}
-    //   >
-    //     <ChevronLeftIcon className="w-6 h-6" />
-    //   </Button>
-    // ),
+
   };
 
 
@@ -107,11 +90,11 @@ export default function MasonryGrid() {
               alt={`Landscape ${index + 1}`}
               className="w-full h-40 object-cover transition-transform duration-300 hover:scale-105"
             />
-            <div className="absolute bottom-0 left-0 right-0 p-2 bg-black bg-opacity-50">
+            {/* <div className="absolute bottom-0 left-0 right-0 p-2 bg-black bg-opacity-50">
               <p className="text-white text-sm font-semibold">
                 Image {index + 1}
               </p>
-            </div>
+            </div> */}
           </div>
         ))}
         {Images.length > 4 && (
@@ -130,7 +113,7 @@ export default function MasonryGrid() {
         isOpen={isOpen}
         onClose={onClose}
         size="5xl"
-        className=" bg-[#130F1F] no-scrollbar"
+        className=" bg-[#130F1F] no-scrollbar p-4"
       >
         <ModalContent>
           <ModalBody className="relative">
@@ -145,20 +128,6 @@ export default function MasonryGrid() {
                 </div>
               ))}
             </Slider>
-            {/* <Button
-              isIconOnly
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/50 hover:bg-white/80"
-              onClick={goToPrev}
-            >
-              <ChevronLeftIcon className="w-6 h-6" />
-            </Button> */}
-            {/* <Button
-              isIconOnly
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/50 hover:bg-white/80"
-              onClick={goToNext}
-            >
-              <ChevronRightIcon className="w-6 h-6" />
-            </Button> */}
           </ModalBody>
         </ModalContent>
       </Modal>

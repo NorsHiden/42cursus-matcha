@@ -15,7 +15,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
   // } , [windowWidth]);
   return (
     // <AuthProvider>
-    <div className={`flex h-screen space-x-5 mr-5 relative `}>
+    <div className={`flex h-screen overflow-auto space-x-5 mr-5 relative `}>
       <Sidebar />
       <div className="flex w-full h-full place-content-center ">
         {/* <Header /> */}
