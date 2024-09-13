@@ -1,6 +1,9 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import { MyORM } from './orm/orm';
 import { generateFakeUsers } from './orm/seed/users';
+import authRoutes from './auth/auth.controller';
+import initServices from './init.services';
+import authController from './auth/auth.controller';
 
 async function bootstrap() {
   const app = express();
@@ -18,9 +21,9 @@ async function bootstrap() {
   // generate users for testing
   generateFakeUsers(myOrm, 10);
 
-  app.get('/', (req: Request, res: Response) => {
-    res.send('Api is Ready!');
-  });
+  const services = await initServices(myOrm);
+
+  app.use('/api/auth', authController(services.authService));
 
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
