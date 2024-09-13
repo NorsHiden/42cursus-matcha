@@ -38,3 +38,15 @@ body {
     scrollbar-width: none; /* Firefox */
   }
 }
+
+
+::-webkit-scrollbar {
+  width: 12px; /* Width of the entire scrollbar */
+}
+
+
+::-webkit-scrollbar-thumb {
+  background-color: #130F1F; /* Color of the scrollbar */
+  border-radius: 8px;     /* Optional: rounding the corners */
+  /* border: 3px solid #E1244F; Optional: adds space around the scrollbar */
+}
