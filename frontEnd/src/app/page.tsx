@@ -10,7 +10,7 @@ const page = () => {
   const router = useRouter();
 
   useEffect(() => {
-    return router.push("/matcha");
+    return router.push("/sign-up");
   }, []);
 
   return <div>loading...</div>;
