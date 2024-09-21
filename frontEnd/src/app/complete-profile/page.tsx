@@ -129,7 +129,7 @@ export default function ProfileCompletionForm() {
       className={`flex flex-col items-center place-content-center h-screen overflow-auto space-x-5 mr-5 relative `}
     >
       <div className=" h-full w-full flex flex-col justify-between py-8 px-36 bg-primary rounded-3xl max-w-[1152px] max-h-[700px]">
-        <form className=" h-full flex flex-col justify-between space-y-6 px-16">
+        <form className=" h-full flex flex-col justify-between space-y-6 px-14">
           {renderStepper()}
           
           {renderStepContent()}

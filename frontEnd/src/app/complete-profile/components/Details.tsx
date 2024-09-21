@@ -7,6 +7,7 @@ const Details = () => {
       <div className="grid grid-cols-2 gap-4">
         <div>
           <Input
+            required
             label="First Name"
             color="secondary"
             id="firstName"
@@ -16,6 +17,7 @@ const Details = () => {
         </div>
         <div>
           <Input
+            required
             label="Last Name"
             color="secondary"
             variant="underlined"
@@ -64,6 +66,7 @@ const Details = () => {
       <div className="grid grid-cols-2 gap-4">
         <div>
           <Input
+            required
             label="Phone Number"
             type="number"
             color="secondary"
