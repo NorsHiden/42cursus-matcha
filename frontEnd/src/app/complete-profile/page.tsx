@@ -1,24 +1,3 @@
-// import React from "react";
-
-// const page = () => {
-//   return (
-//     <div
-//       className={`flex items-center place-content-center h-screen overflow-auto space-x-5 mr-5 relative `}
-//     >
-//       <div className=" h-full w-full bg-primary rounded-3xl max-w-[1152px] max-h-[700px]">
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default page;
-
-// import Stepper from './stepper'
-// import { Button } from "@/components/ui/button"
-// import { Input } from "@/components/ui/input"
-// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-// import { Textarea } from "@/components/ui/textarea"
-
 "use client";
 import {
   Button,
@@ -36,16 +15,29 @@ import Details from "./components/Details";
 import Verification from "./components/Verification";
 import Avatars from "./components/Avatars";
 import Interests from "./components/Interests";
+import { useUserProfileStore } from "@/store/completeProfileStore";
 
 const steps = ["Verification", "Details", "Avatars", "Interests", "Thanks"];
 
 export default function ProfileCompletionForm() {
-  const [currentStep, setCurrentStep] = useState(1);
-
-  const nextStep = () => {
-    if (currentStep < steps.length) {
-      setCurrentStep(currentStep + 1);
-    }
+  // const [currentStep, setCurrentStep] = useState(1);
+  const {
+    currentStep,
+    setCurrentStep,
+    firstName,
+    lastName,
+    gender,
+    showMe,
+    phoneNumber,
+    address,
+    birthday,
+    bio,
+    images,
+    interests,
+    nextStep,
+  } = useUserProfileStore();
+  const _nextStep = () => {
+    nextStep(steps.length);
   };
 
   const prevStep = () => {
@@ -123,6 +115,22 @@ export default function ProfileCompletionForm() {
     }
   };
 
+  const handleSubmit = () => {
+    console.log("submit");
+    console.log(
+      "firstName = ", firstName,
+      "lastName = ", lastName,
+      "gender = ", gender,
+      "showMe = ", showMe,
+      "phoneNumber = ", phoneNumber,
+      "address = ", address,
+      "birthday = ", birthday,
+      "bio = ", bio,
+      "images = ", images,
+      "interests = ", interests
+    );
+  }
+
   return (
     // <div className="w-full max-w-3xl mx-auto p-6 bg-gray-900 text-gray-200 rounded-lg">
     <div
@@ -157,7 +165,7 @@ export default function ProfileCompletionForm() {
             )}
             {currentStep < steps.length ? (
               <Button
-                onClick={nextStep}
+                onClick={_nextStep}
                 variant="solid"
                 color="secondary"
                 // className="bg-red-500 text-white hover:bg-red-600 ml-auto"
@@ -166,7 +174,7 @@ export default function ProfileCompletionForm() {
               </Button>
             ) : (
               <Button
-                onClick={() => alert("Form submitted!")}
+                onClick={handleSubmit}
                 variant="solid"
                 color="success"
                 className=" text-white"

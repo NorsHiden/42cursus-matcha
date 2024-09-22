@@ -1,75 +1,3 @@
-// 'use client'
-
-// import { Autocomplete, AutocompleteItem, Chip } from "@nextui-org/react"
-// import React, { useState, useCallback } from "react"
-// // import { AutoComplete, AutoCompleteItem, Chip } from "@nextui-org/react"
-
-// const interestsList = [
-//   "Reading",
-//   "Writing",
-//   "Coding",
-//   "Photography",
-//   "Traveling",
-//   "Cooking",
-//   "Gaming",
-//   "Music",
-//   "Sports",
-//   "Art",
-//   "Yoga",
-//   "Meditation",
-//   "Dancing",
-//   "Hiking",
-//   "Gardening",
-// ]
-
-// export default function InterestsSelector() {
-//   const [selectedInterests, setSelectedInterests] = useState<string[]>([])
-
-//   const handleSelectionChange = useCallback((selectedKey: React.Key) => {
-//     const selectedInterest = selectedKey.toString()
-//     setSelectedInterests(prevInterests => {
-//       if (!prevInterests.includes(selectedInterest)) {
-//         return [...prevInterests, selectedInterest]
-//       }
-//       return prevInterests
-//     })
-//   }, [])
-
-//   const handleRemove = useCallback((interest: string) => {
-//     setSelectedInterests(prevInterests => prevInterests.filter(item => item !== interest))
-//   }, [])
-
-//   return (
-//     <div className="w-full  space-y-4">
-//       <Autocomplete
-//         label="Select your interests"
-//         placeholder="Type to search..."
-//         className="max-w-xl"
-//         // onChange={handleSelectionChange}
-//         onSelectionChange={ (value) => handleSelectionChange}
-//       >
-//         {interestsList.map((interest) => (
-//           <AutocompleteItem key={interest} value={interest}>
-//             {interest}
-//           </AutocompleteItem>
-//         ))}
-//       </Autocomplete>
-
-//       <div className="flex flex-wrap gap-2">
-//         {selectedInterests.map((interest) => (
-//           <Chip
-//             key={interest}
-//             onClose={() => handleRemove(interest)}
-//             variant="flat"
-//             color="secondary"
-//           >
-//             {interest}
-//           </Chip>
-//         ))}
-//       </div>
-//     </div>
-//   )
-// }
 "use client";
 
 import React, { useState, useMemo } from "react";
@@ -85,9 +13,10 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "@nextui-org/react";
+import { useUserProfileStore } from "@/store/completeProfileStore";
 
 // Extended list of interests categorized
-const interestsCategories = {
+const initialInterestsCategories = {
   "Food & Drink": [
     "🍔 Food & Recipes",
     "🍰 Desserts & Baking",
@@ -237,135 +166,16 @@ const interestsCategories = {
     "📸 Portrait Photography",
   ],
 };
-// export default function EnhancedPinterestInterestsSelector() {
-//   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
-//   const [searchValue, setSearchValue] = useState("");
-//   const [selectedCategory, setSelectedCategory] = useState<string>(Object.keys(interestsCategories)[0])
-
-//   const allInterests = useMemo(() => {
-//     return Object.values(interestsCategories).flat();
-//   }, []);
-
-//   const toggleInterest = (interest: string) => {
-//     setSelectedInterests((prev) =>
-//       prev.includes(interest)
-//         ? prev.filter((i) => i !== interest)
-//         : [...prev, interest]
-//     );
-//   };
-
-//   const filteredInterests = useMemo(() => {
-//     return searchValue
-//       ? allInterests.filter((interest) =>
-//           interest.toLowerCase().includes(searchValue.toLowerCase())
-//         )
-//       : [];
-//   }, [allInterests, searchValue]);
-
-//   const handleSelectionChange = (key: React.Key) => {
-//     if (typeof key === "string") {
-//       toggleInterest(key);
-//     }
-//   };
-
-//   const categories = Object.keys(interestsCategories);
-//   const visibleCategories = categories.slice(0, 5);
-//   const hiddenCategories = categories.slice(5);
-//   const handleCategoryChange = (key: React.Key) => {
-//     setSelectedCategory(key.toString())
-//   }
-//   return (
-//     <div className="w-full max-w-4xl mx-auto p-4">
-//       <h2 className="text-2xl font-bold text-center mb-6">
-//         Choose your interests
-//       </h2>
-
-//       <Autocomplete
-//         label="Search interests"
-//         className="max-w-xs mx-auto mb-6"
-//         onInputChange={setSearchValue}
-//         onSelectionChange={() => handleSelectionChange}
-//       >
-//         {filteredInterests.map((interest) => (
-//           <AutocompleteItem key={interest} value={interest}>
-//             {interest}
-//           </AutocompleteItem>
-//         ))}
-//       </Autocomplete>
-
-//       <Tabs
-//         color="secondary"
-//         className="bg-primary"
-//         classNames={{ wrapper: "bg-primary" }}
-//         aria-label="Interest categories"
-//         selectedKey={selectedCategory}
-//         onSelectionChange={(key) => setSelectedCategory(key as string)}
-//       >
-//         {visibleCategories.map((category) => (
-//           <Tab key={category} title={category} />
-//         ))}
-//         {hiddenCategories.length > 0 && (
-//           <Tab
-//             key="more"
-//             title={
-//               <Dropdown>
-//                 <DropdownTrigger>
-//                   <Button variant="light">{`+${hiddenCategories.length}`}</Button>
-//                 </DropdownTrigger>
-//                 <DropdownMenu
-//                   aria-label="More categories"
-//                   onClick={value => handleCategoryChange}
-//                 >
-//                   {hiddenCategories.map((category) => (
-//                     <DropdownItem key={category}>{category}</DropdownItem>
-//                   ))}
-//                 </DropdownMenu>
-//               </Dropdown>
-//             }
-//           />
-//         )}
-//       </Tabs>
-
-//       <div className="flex flex-wrap mt-4 gap-x-2 gap-y-3">
-//         {selectedCategory &&
-//           interestsCategories[selectedCategory].map((interest: any) => (
-//             <Chip
-//               key={interest}
-//               variant={
-//                 selectedInterests.includes(interest) ? "solid" : "bordered"
-//               }
-//               color="secondary"
-//               className="cursor-pointer transition-all duration-200 hover:scale-105"
-//               onClick={() => toggleInterest(interest)}
-//             >
-//               {interest}
-//             </Chip>
-//           ))}
-//       </div>
-
-//       <div className="mt-8 text-center">
-//         <p className="text-lg font-semibold">
-//           Selected Interests: {selectedInterests.length}
-//         </p>
-//         <div className="flex flex-wrap justify-center gap-2 mt-4">
-//           {selectedInterests.map((interest) => (
-//             <Chip
-//               key={interest}
-//               variant="solid"
-//               color="primary"
-//               onClose={() => toggleInterest(interest)}
-//             >
-//               {interest}
-//             </Chip>
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
 
 export default function EnhancedPinterestInterestsSelector() {
-  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+  const [interestsCategories, setInterestsCategories] = useState<{
+    [key: string]: string[];
+  }>({
+    ...initialInterestsCategories,
+    "User Added": [],
+  });
+  // const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+  const { interests, setInterests } = useUserProfileStore();
   const [searchValue, setSearchValue] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>(
     Object.keys(interestsCategories)[0]
@@ -373,13 +183,17 @@ export default function EnhancedPinterestInterestsSelector() {
 
   const allInterests = useMemo(() => {
     return Object.values(interestsCategories).flat();
-  }, []);
+  }, [interestsCategories]);
+
 
   const toggleInterest = (interest: string) => {
-    setSelectedInterests((prev) =>
-      prev.includes(interest)
-        ? prev.filter((i) => i !== interest)
-        : [...prev, interest]
+    // const { interests, setInterests } = useUserProfileStore();
+
+    // Toggle the interest in Zustand's store
+    setInterests(
+      interests.includes(interest)
+        ? interests.filter((i) => i !== interest) // Remove interest
+        : [...interests, interest] // Add interest
     );
   };
 
@@ -393,9 +207,9 @@ export default function EnhancedPinterestInterestsSelector() {
 
   const handleSelectionChange = (key: React.Key) => {
     console.log(key);
-    // if (typeof key === "string") {
+    if (typeof key === "string") {
       toggleInterest(key as string);
-    // }
+    }
   };
 
   const categories = Object.keys(interestsCategories);
@@ -403,26 +217,61 @@ export default function EnhancedPinterestInterestsSelector() {
   const hiddenCategories = categories.slice(5);
 
   const handleCategoryChange = (key: React.Key) => {
+    console.log("key", key);
     setSelectedCategory(key.toString());
   };
 
+  const handleAddCustomInterest = () => {
+    if (searchValue.trim()) {
+      const newInterest = searchValue.trim();
+      if (!allInterests.includes(newInterest)) {
+        setInterestsCategories((prev) => ({
+          ...prev,
+          "User Added": [...prev["User Added"], newInterest],
+        }));
+        toggleInterest(newInterest);
+      } else {
+        // If the interest already exists, just toggle it
+        toggleInterest(newInterest);
+      }
+      setSearchValue("");
+    }
+  };
   return (
     <div className="w-full max-w-4xl mx-auto p-4">
-      <h2 className="text-2xl font-bold text-center mb-6">
-        Choose your interests
-      </h2>
+      <h2 className="text-2xl font-bold mb-6">Choose your interests</h2>
 
       <Autocomplete
         fullWidth
+        color="secondary"
         label="Search interests"
         className=" mx-auto mb-6"
         onInputChange={setSearchValue}
-        allowsCustomValue={true}
+        // allowsCustomValue={true}
         // onSelectionChange={onSelectionChange}
         onSelectionChange={handleSelectionChange}
+        listboxProps={{
+          emptyContent: (
+            <div className="p-2 flex flex-col items-center">
+              <p className="text-sm text-gray-500 mb-2">No results found.</p>
+              <Button color="primary" onClick={handleAddCustomInterest}>
+                Add "{searchValue}" as new interest
+              </Button>
+            </div>
+          ),
+        }}
       >
         {filteredInterests.map((interest) => (
-          <AutocompleteItem key={interest} value={interest}>
+          <AutocompleteItem
+            color="primary"
+            startContent={
+              interests.includes(interest) ? (
+                <span className="text-primary mr-2">✓</span>
+              ) : null
+            }
+            key={interest}
+            value={interest}
+          >
             {interest}
           </AutocompleteItem>
         ))}
@@ -430,35 +279,15 @@ export default function EnhancedPinterestInterestsSelector() {
 
       <Tabs
         color="secondary"
-        className="bg-primary"
+        className="bg-primary flex flex-wrap w-full"
         classNames={{ wrapper: "bg-primary" }}
         aria-label="Interest categories"
         selectedKey={selectedCategory}
         onSelectionChange={handleCategoryChange}
       >
-        {visibleCategories.map((category) => (
+        {categories.map((category) => (
           <Tab key={category} title={category} />
         ))}
-        {hiddenCategories.length > 0 && (
-          <Tab
-            key="more"
-            title={
-              <Dropdown>
-                <DropdownTrigger>
-                  <Button variant="light">{`+${hiddenCategories.length}`}</Button>
-                </DropdownTrigger>
-                <DropdownMenu
-                  aria-label="More categories"
-                  onClick={handleCategoryChange}
-                >
-                  {hiddenCategories.map((category) => (
-                    <DropdownItem key={category}>{category}</DropdownItem>
-                  ))}
-                </DropdownMenu>
-              </Dropdown>
-            }
-          />
-        )}
       </Tabs>
 
       <div className="flex flex-wrap mt-4 gap-x-2 gap-y-3">
@@ -466,7 +295,7 @@ export default function EnhancedPinterestInterestsSelector() {
           <Chip
             key={interest}
             variant={
-              selectedInterests.includes(interest) ? "solid" : "bordered"
+              interests.includes(interest) ? "solid" : "bordered"
             }
             color="secondary"
             className="cursor-pointer transition-all duration-200 hover:scale-105"
@@ -477,16 +306,16 @@ export default function EnhancedPinterestInterestsSelector() {
         ))}
       </div>
 
-      <div className="mt-8 max-h-40 overflow-auto text-center">
+      <div className="mt-8 max-h-40 overflow-auto ">
         <p className="text-lg font-semibold">
-          Selected Interests: {selectedInterests.length}
+          Selected Interests: {interests.length}
         </p>
-        <div className="flex flex-wrap justify-center gap-2 mt-4">
-          {selectedInterests.map((interest) => (
+        <div className="flex flex-wrap justify- gap-2 mt-4">
+          {interests.map((interest) => (
             <Chip
               key={interest}
               variant="solid"
-              color="primary"
+              color="secondary"
               onClose={() => toggleInterest(interest)}
             >
               {interest}
